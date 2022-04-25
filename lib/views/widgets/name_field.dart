@@ -18,7 +18,7 @@ class NameField extends StatelessWidget {
           style: kTFLabelTextStyle,
         ),
         const SizedBox(
-          height: 12,
+          height: 8,
         ),
         TextField(
           decoration: InputDecoration(
