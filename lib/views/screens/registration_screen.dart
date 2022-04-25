@@ -3,7 +3,7 @@ import 'package:spin_auth/constants/color_constants.dart';
 import 'package:spin_auth/constants/string_constants.dart';
 import 'package:spin_auth/constants/style_constants.dart';
 import 'package:spin_auth/constants/urls.dart';
-import 'package:spin_auth/views/widgets/country_code_field.dart';
+import 'package:spin_auth/views/screens/verification_screen.dart';
 import 'package:spin_auth/views/widgets/email_field.dart';
 import 'package:spin_auth/views/widgets/password_field.dart';
 import 'package:spin_auth/views/widgets/phone_field.dart';
@@ -180,7 +180,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           const SizedBox(
                             height: 30,
                           ),
-                          const MyButton()
+                          MyButton(
+                            label: StringConstants.next,
+                            onPress: () {
+                              Navigator.of(context)
+                                  .push(MaterialPageRoute(builder: (_) {
+                                return const VerificationScreen();
+                              }));
+                            },
+                          )
                         ],
                       ),
                     ),

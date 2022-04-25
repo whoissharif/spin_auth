@@ -9,4 +9,9 @@ class StringConstants {
   static const password = 'Password';
   static const confirmedPassword = 'Confirmed Password';
   static const next = 'Next';
+  static const emailOtp = 'OTP from Email';
+  static const phoneOtp = 'OTP from Phone';
+  static const verify = 'Verify';
+  static const verifyOtp = 'Verify OTP';
+  static const verifyMsg = 'Verify OTP to complete registration process';
 }
