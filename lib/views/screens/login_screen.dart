@@ -16,15 +16,18 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String _selectedCode = 'BD +880';
+  String _selectedCode = 'BD +88';
   bool _isVisible = false;
   final _countryCodes = [
     "AFG +93",
     "ALB +355",
     "ALG +213",
     "ARM +374",
-    "BD +880",
+    "BD +88",
   ];
+
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,10 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.network(Urls.logoUrl),
+                Image.asset(
+                  Urls.logoUrl,
+                  height: 80,
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -75,7 +81,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                   enabledBorder: kBorderStyle,
                                 ),
-                                // isEmpty: _currentSelectedValue == '',
                                 child: DropdownButtonHideUnderline(
                                   child: DropdownButton<String>(
                                     items: _countryCodes.map((String value) {
@@ -103,13 +108,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(
                       width: 10,
                     ),
-                    const Expanded(flex: 7, child: PhoneField()),
+                    Expanded(
+                      flex: 7,
+                      child: PhoneField(
+                        controller: phoneController,
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(
                   height: 15,
                 ),
                 PasswordField(
+                  controller: passwordController,
                   icon: IconButton(
                     icon: Icon(
                         !_isVisible ? Icons.visibility_off : Icons.visibility),

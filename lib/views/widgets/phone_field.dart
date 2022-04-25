@@ -6,7 +6,10 @@ import '../../constants/style_constants.dart';
 class PhoneField extends StatelessWidget {
   const PhoneField({
     Key? key,
+    required this.controller,
   }) : super(key: key);
+
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +24,11 @@ class PhoneField extends StatelessWidget {
           height: 8,
         ),
         TextField(
+          controller: controller,
           keyboardType: TextInputType.phone,
           decoration: InputDecoration(
-            contentPadding: const EdgeInsets.only(top: 3.0,bottom: 3,left: 10),
+            contentPadding:
+                const EdgeInsets.only(top: 3.0, bottom: 3, left: 10),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.0),
             ),

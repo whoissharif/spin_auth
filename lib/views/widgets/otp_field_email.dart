@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/string_constants.dart';
 import '../../constants/style_constants.dart';
 
-class NameField extends StatelessWidget {
-  const NameField({
+class OtpFieldEmail extends StatelessWidget {
+  const OtpFieldEmail({
     Key? key,
+    required this.label,
     required this.controller,
   }) : super(key: key);
-
+  final String label;
   final TextEditingController controller;
 
   @override
@@ -16,8 +16,8 @@ class NameField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          StringConstants.name,
+        Text(
+          label,
           style: kTFLabelTextStyle,
         ),
         const SizedBox(
@@ -25,6 +25,8 @@ class NameField extends StatelessWidget {
         ),
         TextField(
           controller: controller,
+          textAlign: TextAlign.center,
+          keyboardType: TextInputType.number,
           decoration: InputDecoration(
             contentPadding:
                 const EdgeInsets.only(top: 3.0, bottom: 3, left: 10),
@@ -32,9 +34,6 @@ class NameField extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.0),
             ),
             enabledBorder: kBorderStyle,
-            suffixIcon: const Icon(
-              Icons.person,
-            ),
           ),
           style: const TextStyle(
             fontWeight: FontWeight.bold,

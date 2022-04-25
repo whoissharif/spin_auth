@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:spin_auth/constants/color_constants.dart';
 import 'package:spin_auth/constants/string_constants.dart';
@@ -20,14 +22,22 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   bool _isVisible = false;
-  String _selectedCode = 'BD +880';
+  String _selectedCode = 'BD +88';
   final _countryCodes = [
     "AFG +93",
     "ALB +355",
     "ALG +213",
     "ARM +374",
-    "BD +880",
+    "BD +88",
   ];
+
+  String errorMsg = '';
+
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmedPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,28 +51,25 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               hasScrollBody: false,
               child: Column(
                 children: [
-                  Expanded(
-                    flex: 2,
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 45.0),
-                        child: Column(
-                          children: [
-                            Image.network(
-                              Urls.logoUrl,
-                              height: 80,
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            const Text(StringConstants.createAccount,
-                                style: kHeadingTextStyle),
-                            const Text(
-                              StringConstants.registerToAccess,
-                              style: kSubHeadingTextStyle,
-                            )
-                          ],
-                        ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 60.0, bottom: 20.0),
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            Urls.logoUrl,
+                            height: 80,
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          const Text(StringConstants.createAccount,
+                              style: kHeadingTextStyle),
+                          const Text(
+                            StringConstants.registerToAccess,
+                            style: kSubHeadingTextStyle,
+                          )
+                        ],
                       ),
                     ),
                   ),
@@ -80,11 +87,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       ),
                       child: Column(
                         children: [
-                          const NameField(),
+                          NameField(
+                            controller: nameController,
+                          ),
                           const SizedBox(
                             height: 15,
                           ),
-                          const EmailField(),
+                          EmailField(
+                            controller: emailController,
+                          ),
                           const SizedBox(
                             height: 15,
                           ),
@@ -149,13 +160,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               const SizedBox(
                                 width: 10,
                               ),
-                              const Expanded(flex: 7, child: PhoneField()),
+                              Expanded(
+                                flex: 7,
+                                child: PhoneField(controller: phoneController),
+                              ),
                             ],
                           ),
                           const SizedBox(
                             height: 15,
                           ),
                           PasswordField(
+                            controller: passwordController,
                             icon: IconButton(
                               icon: Icon(!_isVisible
                                   ? Icons.visibility_off
@@ -172,10 +187,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           const SizedBox(
                             height: 15,
                           ),
-                          const PasswordField(
-                            icon: SizedBox(),
+                          PasswordField(
+                            controller: confirmedPasswordController,
+                            icon: const SizedBox(),
                             obscureText: true,
                             label: StringConstants.confirmedPassword,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            errorMsg,
+                            style: kErrorMsgStyle,
                           ),
                           const SizedBox(
                             height: 30,
@@ -183,13 +206,33 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           MyButton(
                             label: StringConstants.next,
                             onPress: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) {
-                                    return const VerificationScreen();
-                                  },
-                                ),
-                              );
+                              setState(() {
+                                errorMsg = '';
+                              });
+                              Map<String, String> body = {
+                                "phoneNumber": _selectedCode.split("+").last +
+                                    phoneController.text,
+                                "password": passwordController.text,
+                                "email": emailController.text,
+                                "name": nameController.text,
+                                "countryCode": _selectedCode.split(" ").first,
+                              };
+
+                              if (passwordController.text !=
+                                  confirmedPasswordController.text) {
+                                setState(() {
+                                  errorMsg = 'Password doesn\'t matched';
+                                });
+                              } else {
+                                log(body.toString());
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (_) {
+                                      return VerificationScreen();
+                                    },
+                                  ),
+                                );
+                              }
                             },
                           )
                         ],

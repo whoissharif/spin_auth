@@ -6,7 +6,10 @@ import '../../constants/style_constants.dart';
 class EmailField extends StatelessWidget {
   const EmailField({
     Key? key,
+    required this.controller,
   }) : super(key: key);
+
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +24,7 @@ class EmailField extends StatelessWidget {
           height: 8,
         ),
         TextField(
+          controller: controller,
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             contentPadding:

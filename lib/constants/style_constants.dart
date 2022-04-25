@@ -32,6 +32,11 @@ const TextStyle kTFLabelTextStyle = TextStyle(
   fontWeight: FontWeight.w600,
 );
 
+const TextStyle kErrorMsgStyle = TextStyle(
+  color: Colors.red,
+  fontSize: 12,
+);
+
 OutlineInputBorder kBorderStyle = OutlineInputBorder(
   borderRadius: BorderRadius.circular(12.0),
   borderSide:

@@ -8,11 +8,13 @@ class PasswordField extends StatelessWidget {
     required this.icon,
     required this.obscureText,
     required this.label,
+    required this.controller,
   }) : super(key: key);
 
   final Widget icon;
   final bool obscureText;
   final String label;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class PasswordField extends StatelessWidget {
           height: 8,
         ),
         TextField(
+          controller: controller,
           obscureText: obscureText,
           decoration: InputDecoration(
             contentPadding:

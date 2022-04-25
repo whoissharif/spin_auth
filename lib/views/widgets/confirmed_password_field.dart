@@ -2,12 +2,19 @@ import 'package:flutter/material.dart';
 
 import '../../constants/style_constants.dart';
 
-class OtpField extends StatelessWidget {
-  const OtpField({
+class ConfirmedPasswordField extends StatelessWidget {
+  const ConfirmedPasswordField({
     Key? key,
+    required this.icon,
+    required this.obscureText,
     required this.label,
+    required this.controller,
   }) : super(key: key);
+
+  final Widget icon;
+  final bool obscureText;
   final String label;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +29,8 @@ class OtpField extends StatelessWidget {
           height: 8,
         ),
         TextField(
-          textAlign: TextAlign.center,
-          keyboardType: TextInputType.number,
+          controller: controller,
+          obscureText: obscureText,
           decoration: InputDecoration(
             contentPadding:
                 const EdgeInsets.only(top: 3.0, bottom: 3, left: 10),

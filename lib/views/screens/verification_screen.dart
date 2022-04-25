@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:spin_auth/constants/color_constants.dart';
 import 'package:spin_auth/constants/string_constants.dart';
 import 'package:spin_auth/views/screens/login_screen.dart';
-import 'package:spin_auth/views/widgets/otp_field.dart';
+import 'package:spin_auth/views/widgets/otp_field_email.dart';
+import 'package:spin_auth/views/widgets/otp_field_phone.dart';
 
 import '../widgets/my_button.dart';
 
 class VerificationScreen extends StatelessWidget {
-  const VerificationScreen({Key? key}) : super(key: key);
+  VerificationScreen({Key? key}) : super(key: key);
+
+  TextEditingController emailOTPController = TextEditingController();
+  TextEditingController phoneOTPController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +45,17 @@ class VerificationScreen extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-              const OtpField(label: StringConstants.emailOtp),
+              OtpFieldEmail(
+                label: StringConstants.emailOtp,
+                controller: emailOTPController,
+              ),
               const SizedBox(
                 height: 15,
               ),
-              const OtpField(label: StringConstants.phoneOtp),
+              OtpFieldPhone(
+                label: StringConstants.phoneOtp,
+                controller: phoneOTPController,
+              ),
               const SizedBox(
                 height: 30,
               ),
