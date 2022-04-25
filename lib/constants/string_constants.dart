@@ -7,5 +7,6 @@ class StringConstants {
   static const countryCode = 'Country Code';
   static const phone = 'Phone';
   static const password = 'Password';
+  static const confirmedPassword = 'Confirmed Password';
   static const next = 'Next';
 }
