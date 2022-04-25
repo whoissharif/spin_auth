@@ -14,4 +14,9 @@ class StringConstants {
   static const verify = 'Verify';
   static const verifyOtp = 'Verify OTP';
   static const verifyMsg = 'Verify OTP to complete registration process';
+  static const welcomeBack = 'Welcome back';
+  static const continuewithEmail = 'Continue with Email or Phone Number';
+  static const forgotPass = 'Forgot password?';
+  static const signin = 'Sign in';
+  static const createNewAccount = 'Create A New Account';
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spin_auth/constants/color_constants.dart';
 import 'package:spin_auth/constants/string_constants.dart';
+import 'package:spin_auth/views/screens/login_screen.dart';
 import 'package:spin_auth/views/widgets/otp_field.dart';
 
 import '../widgets/my_button.dart';
@@ -46,15 +47,20 @@ class VerificationScreen extends StatelessWidget {
               ),
               const OtpField(label: StringConstants.phoneOtp),
               const SizedBox(
-                height: 25,
+                height: 30,
               ),
               MyButton(
-                  label: StringConstants.verify,
-                  onPress: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-                      return Scaffold();
-                    }));
-                  })
+                label: StringConstants.verify,
+                onPress: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) {
+                        return const LoginScreen();
+                      },
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),

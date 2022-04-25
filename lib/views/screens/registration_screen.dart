@@ -183,10 +183,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           MyButton(
                             label: StringConstants.next,
                             onPress: () {
-                              Navigator.of(context)
-                                  .push(MaterialPageRoute(builder: (_) {
-                                return const VerificationScreen();
-                              }));
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) {
+                                    return const VerificationScreen();
+                                  },
+                                ),
+                              );
                             },
                           )
                         ],

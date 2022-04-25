@@ -8,10 +8,23 @@ const TextStyle kHeadingTextStyle = TextStyle(
   fontWeight: FontWeight.w700,
 );
 
+const TextStyle kHeadingTextStyleBlack = TextStyle(
+  fontSize: 30,
+  letterSpacing: .5,
+  color: Colors.black,
+  fontWeight: FontWeight.w700,
+);
+
 const TextStyle kSubHeadingTextStyle = TextStyle(
   fontSize: 14,
   letterSpacing: .6,
   color: Colors.white,
+);
+
+const TextStyle kSubHeadingTextStyleBlack = TextStyle(
+  fontSize: 12,
+  letterSpacing: .6,
+  color: Colors.black,
 );
 
 const TextStyle kTFLabelTextStyle = TextStyle(
