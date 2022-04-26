@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:spin_auth/api/api_manager.dart';
 import 'package:spin_auth/constants/color_constants.dart';
 import 'package:spin_auth/constants/string_constants.dart';
 import 'package:spin_auth/constants/style_constants.dart';
@@ -129,7 +130,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                             ),
                                             enabledBorder: kBorderStyle,
                                           ),
-                                          // isEmpty: _currentSelectedValue == '',
                                           child: DropdownButtonHideUnderline(
                                             child: DropdownButton<String>(
                                               items: _countryCodes
@@ -205,7 +205,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           ),
                           MyButton(
                             label: StringConstants.next,
-                            onPress: () {
+                            onPress: () async {
                               setState(() {
                                 errorMsg = '';
                               });
@@ -224,14 +224,31 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                   errorMsg = 'Password doesn\'t matched';
                                 });
                               } else {
+                                Map<String, dynamic>? map;
                                 log(body.toString());
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (_) {
-                                      return VerificationScreen();
-                                    },
-                                  ),
-                                );
+                                try {
+                                  map = await ApiManager().send(body);
+                                } catch (e) {
+                                  log(e.toString());
+                                }
+
+                                log(map.toString());
+
+                                if (map!["statusCode"] == 400) {
+                                  setState(() {
+                                    errorMsg = map!["errors"][0]["msg"];
+                                  });
+                                } else if (map["statusCode"] == 201) {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (_) {
+                                        return VerificationScreen(
+                                          prevBody: body,
+                                        );
+                                      },
+                                    ),
+                                  );
+                                }
                               }
                             },
                           )
