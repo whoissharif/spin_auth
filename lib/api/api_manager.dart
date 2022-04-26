@@ -19,4 +19,18 @@ class ApiManager {
     }
     return map;
   }
+
+  Future<dynamic> register(Map<String, String> body) async {
+    late Map<String, dynamic> map;
+    try {
+      var response =
+          await http.post(Uri.parse(Urls.baseUrl + Urls.registerUrl), body: body);
+      if (response.statusCode == 201 || response.statusCode == 400) {
+        map = json.decode(response.body);
+      }
+    } catch (e) {
+      log("ex: $e");
+    }
+    return map;
+  }
 }
