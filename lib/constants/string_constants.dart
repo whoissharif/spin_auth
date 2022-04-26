@@ -19,4 +19,5 @@ class StringConstants {
   static const forgotPass = 'Forgot password?';
   static const signin = 'Sign in';
   static const createNewAccount = 'Create A New Account';
+  static const alreadyHave = 'Already Have an Account?';
 }
