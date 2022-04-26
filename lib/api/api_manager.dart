@@ -33,4 +33,18 @@ class ApiManager {
     }
     return map;
   }
+
+  Future<dynamic> login(Map<String, String> body) async {
+    late Map<String, dynamic> map;
+    try {
+      var response =
+          await http.post(Uri.parse(Urls.baseUrl + Urls.loginUrl), body: body);
+      if (response.statusCode == 200 || response.statusCode == 400) {
+        map = json.decode(response.body);
+      }
+    } catch (e) {
+      log("ex: $e");
+    }
+    return map;
+  }
 }
