@@ -4,6 +4,7 @@
     <p>An authentication app with 2 step registration process. On the first step, the user will fill in his country code, email, name, phone, and password and click next. This will redirect user to the verification screen and user will receive 2 otps at his/her email address. If the otp verification is successfully completed the user will prompt to sign in screen where he can sign in to the system by filling necessary information. 
     </p>
  </p>
+  <img src="assets/images/cover.png"> 
  <br>
 <table>
   <tr>
